@@ -73,15 +73,12 @@
       font-weight: bold;
     }
 
-    /* Logo */
-    #logo {
-      width: 120px;
-      height: 60px;
-      border: 2px dashed #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
+   // Logo
+const logo = document.createElement('img'); // <-- fixed from 'png' to 'img'
+logo.src = 'logo.png';               // <-- adjust path if needed
+logo.alt = 'Bench Logo';
+logo.style.height = '50px';
+logo.style.marginRight = '20px';
     }
 
     /* Buttons/links */
