@@ -20,10 +20,12 @@
       justify-content: center;
       gap: 50px;
       margin-bottom: 30px;
+      align-items: center;
     }
     .middle-section {
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 50px;
       margin-bottom: 30px;
     }
@@ -58,27 +60,34 @@
       border: 2px solid #333;
       border-radius: 8px;
       padding: 10px;
-      width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 150px;   /* match analog clock */
+      width: 200px;    /* proportional width */
+      box-sizing: border-box;
+    }
+    #calendar h3 {
+      margin: 0 0 5px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     #calendar table {
       width: 100%;
       border-collapse: collapse;
+      font-size: 12px;
     }
     #calendar th, #calendar td {
       text-align: center;
-      padding: 5px;
+      padding: 3px;
     }
     #calendar .today {
       color: red;
       font-weight: bold;
-    }
-
-   // Logo
-const logo = document.createElement('img'); // <-- fixed from 'png' to 'img'
-logo.src = 'logo.png';               // <-- adjust path if needed
-logo.alt = 'Bench Logo';
-logo.style.height = '50px';
-logo.style.marginRight = '20px';
+      border: 1px solid red;
+      border-radius: 4px;
     }
 
     /* Buttons/links */
@@ -143,7 +152,7 @@ logo.style.marginRight = '20px';
   <!-- Middle: Digital Clock + Logo -->
   <div class="middle-section">
     <div id="digitalClock">00:00:00</div>
-    <div id="logo">LOGO</div>
+    <div id="logo"></div>
   </div>
 
   <!-- Buttons -->
@@ -239,8 +248,8 @@ logo.style.marginRight = '20px';
       const daysInMonth = new Date(year, month + 1, 0).getDate();
 
       let html = "<h3>";
-      html += `<button onclick="changeMonth(-1)">&#8592;</button> `;
-      html += `${year}-${month + 1} `;
+      html += `<button onclick="changeMonth(-1)">&#8592;</button>`;
+      html += `<span>${year}-${month + 1}</span>`;
       html += `<button onclick="changeMonth(1)">&#8594;</button>`;
       html += "</h3>";
       html += "<table><tr>";
@@ -271,6 +280,15 @@ logo.style.marginRight = '20px';
     }
 
     renderCalendar(currentMonth, currentYear);
+
+    // Add Logo Dynamically
+    const logoContainer = document.getElementById('logo');
+    const logo = document.createElement('img');
+    logo.src = 'logo.png';  // <-- make sure the file path is correct
+    logo.alt = 'Bench Logo';
+    logo.style.height = '50px';
+    logo.style.marginLeft = '20px';
+    logoContainer.appendChild(logo);
   </script>
 </body>
 </html>
