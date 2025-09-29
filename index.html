@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Dashboard</title>
+  <link rel="stylesheet" href="clock.css"> <!-- ✅ Clock CSS -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -21,7 +22,7 @@
       gap: 30px;
       margin-bottom: 30px;
       align-items: flex-start;
-      flex-wrap: wrap; /* ✅ allows stacking on mobile */
+      flex-wrap: wrap;
     }
     .middle-section {
       display: flex;
@@ -37,14 +38,6 @@
       gap: 15px;
       justify-content: center;
       margin-bottom: 30px;
-    }
-
-    /* Analog clock */
-    #clockCanvas {
-      background: #fff;
-      border: 2px solid #333;
-      border-radius: 50%;
-      flex-shrink: 0;
     }
 
     /* Digital clock */
@@ -145,15 +138,11 @@
       display: block;
     }
 
-    /* ✅ Responsive tweaks */
+    /* Responsive tweaks */
     @media (max-width: 600px) {
       .top-section, .middle-section {
         flex-direction: column;
         align-items: center;
-      }
-      #clockCanvas {
-        width: 120px;
-        height: 120px;
       }
       #calendar {
         width: 100%;
@@ -173,7 +162,7 @@
 
   <!-- Top: Analog Clock + Calendar -->
   <div class="top-section">
-    <canvas id="clockCanvas" width="150" height="150"></canvas>
+    <canvas id="clockCanvas" width="200" height="200"></canvas>
     <div id="calendar"></div>
   </div>
 
@@ -184,26 +173,28 @@
   </div>
 
   <!-- Buttons -->
-  <div class="grid">
-    <div class="box" onclick="window.location.href='https://chad1991.github.io/FORTPOLIO/'">FORTPOLIO</div>
-    <div class="box" onclick="window.location.href='https://anime-three-kappa.vercel.app/home'">ANIME NO ADS</div>
-    <div class="box" onclick="window.location.href='https://adg-jptv.pages.dev/'">TV</div>
-    <div class="box" onclick="window.location.href='https://serialgo.tv/home'">MOVEI</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/1-introduction'">INTRO</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/2-brand-and-product-orientation'">BRAND</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/3-huris-tutorials-and-mp4-sample'">HURL9</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/4-stock-keeping-files'">SKF</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/7-link'">LINK</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/9-reconciliation'">RECON</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/10-atd-guidelines'">ATD</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/11-training-module'">TRAINING</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/12-bcms-forms-hiring'">FORMS</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/1'">SHIFT</div>
-    <div class="box" onclick="window.location.href='https://drive.google.com/file/d/1unI2rtJPLuQdJqXWXmwHZs1pNK0sjJso/view?usp=drivesdk'">ORDERING</div>
-    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/5'">SKU METRO</div>
-    <div class="box" onclick="window.location.href='https://cloudconvert.com/'">IMAGE CONVERTER</div>
-    <div class="box" onclick="window.location.href='https://www.remove.bg/'">BACKGROUND REMOVER</div>
-  </div>
+  ‎<!-- Buttons -->
+‎  <div class="grid">
+‎    <div class="box" onclick="window.location.href='https://chad1991.github.io/FORTPOLIO/'">FORTPOLIO</div>
+‎    <div class="box" onclick="window.location.href='https://anime-three-kappa.vercel.app/home'">ANIME NO ADS</div>
+‎    <div class="box" onclick="window.location.href='https://adg-jptv.pages.dev/'">TV</div>
+‎    <div class="box" onclick="window.location.href='https://serialgo.tv/home'">MOVEI</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/1-introduction'">INTRO</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/2-brand-and-product-orientation'">BRAND</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/3-huris-tutorials-and-mp4-sample'">HURL9</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/4-stock-keeping-files'">SKF</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/7-link'">LINK</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/9-reconciliation'">RECON</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/10-atd-guidelines'">ATD</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/11-training-module'">TRAINING</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/12-bcms-forms-hiring'">FORMS</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/1'">SHIFT</div>
+‎    <div class="box" onclick="window.location.href='https://drive.google.com/file/d/1unI2rtJPLuQdJqXWXmwHZs1pNK0sjJso/view?usp=drivesdk'">ORDERING</div>
+‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/5'">SKU METRO</div>
+‎    <div class="box" onclick="window.location.href='https://cloudconvert.com/'">IMAGE CONVERTER</div>
+‎    <div class="box" onclick="window.location.href='https://www.remove.bg/'">BACKGROUND REMOVER</div>
+‎  </div>
+‎
 
   <!-- Dropdown -->
   <div class="dropdown">
@@ -215,56 +206,9 @@
     </div>
   </div>
 
+  <!-- Scripts -->
+  <script src="clock.js"></script>
   <script>
-    // Analog Clock
-    const canvas = document.getElementById("clockCanvas");
-    const ctx = canvas.getContext("2d");
-    function drawClock() {
-      const now = new Date();
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const radius = canvas.width / 2;
-      ctx.save();
-      ctx.translate(radius, radius);
-
-      ctx.beginPath();
-      ctx.arc(0, 0, radius - 5, 0, 2 * Math.PI);
-      ctx.stroke();
-
-      const hour = now.getHours();
-      const minute = now.getMinutes();
-      const second = now.getSeconds();
-
-      // Hour hand
-      ctx.rotate((hour % 12) * (Math.PI / 6) + (minute * Math.PI) / 360);
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(radius * 0.5, 0);
-      ctx.stroke();
-      ctx.rotate(-(hour % 12) * (Math.PI / 6) - (minute * Math.PI) / 360);
-
-      // Minute hand
-      ctx.rotate((minute * Math.PI) / 30 + (second * Math.PI) / 1800);
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(radius * 0.8, 0);
-      ctx.stroke();
-      ctx.rotate(-(minute * Math.PI) / 30 - (second * Math.PI) / 1800);
-
-      // Second hand
-      ctx.strokeStyle = "red";
-      ctx.rotate((second * Math.PI) / 30);
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(radius * 0.9, 0);
-      ctx.stroke();
-      ctx.rotate(-(second * Math.PI) / 30);
-      ctx.strokeStyle = "black";
-
-      ctx.restore();
-    }
-    setInterval(drawClock, 1000);
-    drawClock();
-
     // Digital Clock
     function updateDigitalClock() {
       const now = new Date();
@@ -320,7 +264,7 @@
     // Add Logo Dynamically
     const logoContainer = document.getElementById('logo');
     const logo = document.createElement('img');
-    logo.src = 'logo.png';  // <-- make sure the file path is correct
+    logo.src = 'logo.png';  
     logo.alt = 'Bench Logo';
     logo.style.height = '50px';
     logo.style.marginLeft = '20px';
