@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Custom Dashboard</title>
-  <link rel="stylesheet" href="clock.css"> <!-- ✅ Clock CSS -->
+  ‎  <link rel="stylesheet" href="clock.css"> <!-- ✅ Clock CSS -->
   <style>
+    /* ---------- Page layout ---------- */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       background: #f5f5f5;
       margin: 0;
       padding: 20px;
+      box-sizing: border-box;
     }
     h1 { margin-bottom: 20px; }
 
-    /* Layout containers */
     .top-section {
       display: flex;
       justify-content: center;
@@ -25,29 +26,51 @@
       flex-wrap: wrap;
     }
     .middle-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:30px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
     }
+
+    /* ---------- GRID: force exactly 3 columns ---------- */
     .grid {
-      /* Button Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* ✅ Always 3 per row */
-  gap: 15px;
-  justify-items: center; /* Center the boxes */
-  margin-bottom: 30px;
-}
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 columns always */
+      gap: 12px;
+      width: 100%;
+      max-width: 1000px;          /* optional: center and limit total width */
+      margin: 0 auto 30px;
+      align-items: stretch;
+    }
 
-.box {
-  width: 100%;
-  max-width: 150px; /* ✅ keeps boxes readable on phone */
-  }
+    /* Each box */
+    .box {
+      background: #fff;
+      border: 2px solid #333;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.15s;
+      text-align: center;
+      box-sizing: border-box;
 
-    /* Digital clock */
+      /* IMPORTANT: allow grid item to shrink below its contents if needed */
+      min-width: 0;
+      width: 100%;
+
+      /* prevent long words from forcing the box wider */
+      overflow-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .box:hover { background: #e9e9e9; }
+
+    /* ---------- Other UI ---------- */
     #digitalClock {
       font-size: 20px;
       font-weight: bold;
@@ -57,8 +80,6 @@
       border-radius: 8px;
       min-width: 120px;
     }
-
-    /* Calendar */
     #calendar {
       background: #fff;
       border: 2px solid #333;
@@ -66,100 +87,40 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       box-sizing: border-box;
-      width: auto;
-      height: auto;
       min-width: 200px;
     }
-    #calendar h3 {
-      margin: 0 0 5px;
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    #calendar table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    #calendar th, #calendar td {
-      text-align: center;
-      padding: 4px;
-    }
-    #calendar .today {
-      color: red;
-      font-weight: bold;
-      border: 1px solid red;
-      border-radius: 4px;
+    #calendar h3 { margin: 0 0 5px; font-size: 14px; display:flex; justify-content:space-between; align-items:center;}
+    #calendar table { width:100%; border-collapse:collapse; font-size:13px;}
+    #calendar th, #calendar td { text-align:center; padding:4px;}
+    #calendar .today { color:red; font-weight:bold; border:1px solid red; border-radius:4px; }
+
+    .dropdown { position: relative; display:inline-block; margin-top: 8px; }
+    .dropbtn { background:#fff; border:2px solid #333; border-radius:6px; padding:10px 20px; cursor:pointer; font-weight:bold; }
+    .dropdown-content { display:none; position:absolute; background:#fff; border:2px solid #333; border-radius:6px; min-width:200px; z-index:1; text-align:left; }
+    .dropdown:hover .dropdown-content { display:block; }
+    .dropdown-content a { display:block; padding:10px; text-decoration:none; color:black; }
+    .dropdown-content a:hover { background:#ddd; }
+
+    /* ---------- Responsive tweaks for very small phones ---------- */
+    @media (max-width: 420px) {
+      .grid {
+        gap: 8px;
+      }
+      .box {
+        padding: 8px;
+        font-size: 13px;
+      }
+      #calendar { min-width: 160px; max-width: 320px; }
+      #digitalClock { font-size: 18px; }
     }
 
-    /* Buttons/links */
-    .box {
-      background: #fff;
-      border: 2px solid #333;
-      border-radius: 6px;
-      padding: 10px;
-      cursor: pointer;
-      transition: 0.2s;
-      text-align: center;
-    }
-    .box:hover {
-      background: #ddd;
-    }
-
-    /* Dropdown */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropbtn {
-      background: #fff;
-      border: 2px solid #333;
-      border-radius: 6px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background: #fff;
-      border: 2px solid #333;
-      border-radius: 6px;
-      min-width: 200px;
-      z-index: 1;
-      text-align: left;
-    }
-    .dropdown-content a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-      color: black;
-    }
-    .dropdown-content a:hover {
-      background: #ddd;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 600px) {
-      .top-section, .middle-section {
-        flex-direction: column;
-        align-items: center;
-      }
-      #calendar {
-        width: 100%;
-        max-width: 320px;
-      }
-      #calendar table {
-        font-size: 14px;
-      }
-      #digitalClock {
-        font-size: 18px;
+    /* If a device is ultra-small and layout still feels cramped, allow horizontal scroll as fallback */
+    @media (max-width: 300px) {
+      .grid {
+        overflow-x: auto;
+        grid-auto-flow: column;
+        grid-auto-columns: calc(100% / 3); /* keep 3 visual columns when scrolling horizontally */
       }
     }
   </style>
@@ -167,42 +128,38 @@
 <body>
   <h1>Dashboard</h1>
 
-  <!-- Top: Analog Clock + Calendar -->
   <div class="top-section">
     <canvas id="clockCanvas" width="200" height="200"></canvas>
     <div id="calendar"></div>
   </div>
 
-  <!-- Middle: Digital Clock + Logo -->
   <div class="middle-section">
     <div id="digitalClock">00:00:00</div>
     <div id="logo"></div>
   </div>
 
-  <!-- Buttons -->
-‎  <div class="grid">
-‎    <div class="box" onclick="window.location.href='https://chad1991.github.io/FORTPOLIO/'">FORTPOLIO</div>
-‎    <div class="box" onclick="window.location.href='https://anime-three-kappa.vercel.app/home'">ANIME NO ADS</div>
-‎    <div class="box" onclick="window.location.href='https://adg-jptv.pages.dev/'">TV</div>
-‎    <div class="box" onclick="window.location.href='https://serialgo.tv/home'">MOVEI</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/1-introduction'">INTRO</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/2-brand-and-product-orientation'">BRAND</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/3-huris-tutorials-and-mp4-sample'">HURL9</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/4-stock-keeping-files'">SKF</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/7-link'">LINK</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/9-reconciliation'">RECON</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/10-atd-guidelines'">ATD</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/11-training-module'">TRAINING</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/12-bcms-forms-hiring'">FORMS</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/1'">SHIFT</div>
-‎    <div class="box" onclick="window.location.href='https://drive.google.com/file/d/1unI2rtJPLuQdJqXWXmwHZs1pNK0sjJso/view?usp=drivesdk'">ORDERING</div>
-‎    <div class="box" onclick="window.location.href='https://sites.google.com/view/benchfiles/index/5'">SKU METRO</div>
-‎    <div class="box" onclick="window.location.href='https://cloudconvert.com/'">IMAGE CONVERTER</div>
-‎    <div class="box" onclick="window.location.href='https://www.remove.bg/'">BACKGROUND REMOVER</div>
-‎  </div>
-‎
+  <!-- BUTTON GRID: cleaned (no hidden unicode characters) -->
+  <div class="grid">
+    <div class="box" onclick="location.href='https://chad1991.github.io/FORTPOLIO/'">FORTPOLIO</div>
+    <div class="box" onclick="location.href='https://anime-three-kappa.vercel.app/home'">ANIME NO ADS</div>
+    <div class="box" onclick="location.href='https://adg-jptv.pages.dev/'">TV</div>
+    <div class="box" onclick="location.href='https://serialgo.tv/home'">MOVEI</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/1-introduction'">INTRO</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/2-brand-and-product-orientation'">BRAND</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/3-huris-tutorials-and-mp4-sample'">HURL9</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/4-stock-keeping-files'">SKF</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/7-link'">LINK</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/9-reconciliation'">RECON</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/10-atd-guidelines'">ATD</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/11-training-module'">TRAINING</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/12-bcms-forms-hiring'">FORMS</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/1'">SHIFT</div>
+    <div class="box" onclick="location.href='https://drive.google.com/file/d/1unI2rtJPLuQdJqXWXmwHZs1pNK0sjJso/view?usp=drivesdk'">ORDERING</div>
+    <div class="box" onclick="location.href='https://sites.google.com/view/benchfiles/index/5'">SKU METRO</div>
+    <div class="box" onclick="location.href='https://cloudconvert.com/'">IMAGE CONVERTER</div>
+    <div class="box" onclick="location.href='https://www.remove.bg/'">BACKGROUND REMOVER</div>
+  </div>
 
-  <!-- Dropdown -->
   <div class="dropdown">
     <button class="dropbtn">Others</button>
     <div class="dropdown-content">
@@ -212,65 +169,54 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- scripts -->
   <script src="clock.js"></script>
   <script>
-    // Digital Clock
+    // digital clock
     function updateDigitalClock() {
       const now = new Date();
-      document.getElementById("digitalClock").textContent =
-        now.toLocaleTimeString();
+      document.getElementById("digitalClock").textContent = now.toLocaleTimeString();
     }
     setInterval(updateDigitalClock, 1000);
     updateDigitalClock();
 
-    // Calendar
+    // calendar
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-
     function renderCalendar(month, year) {
       const today = new Date();
       const firstDay = new Date(year, month).getDay();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
-
       let html = "<h3>";
       html += `<button onclick="changeMonth(-1)">&#8592;</button>`;
-      html += `<span>${year}-${month + 1}</span>`;
+      html += `<span>${year}-${String(month + 1).padStart(2,'0')}</span>`;
       html += `<button onclick="changeMonth(1)">&#8594;</button>`;
       html += "</h3>";
       html += "<table><tr>";
       const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
       for (let d of days) html += `<th>${d}</th>`;
       html += "</tr><tr>";
-
-      for (let i = 0; i < firstDay; i++) html += "<td></td>";
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const isToday =
-          day === today.getDate() &&
-          month === today.getMonth() &&
-          year === today.getFullYear();
-        html += `<td class="${isToday ? "today" : ""}">${day}</td>`;
+      for (let i=0;i<firstDay;i++) html += "<td></td>";
+      for (let day=1; day<=daysInMonth; day++) {
+        const isToday = day===today.getDate() && month===today.getMonth() && year===today.getFullYear();
+        html += `<td class="${isToday ? "today": ""}">${day}</td>`;
         if ((day + firstDay) % 7 === 0) html += "</tr><tr>";
       }
-
       html += "</tr></table>";
       document.getElementById("calendar").innerHTML = html;
     }
-
     function changeMonth(delta) {
       currentMonth += delta;
       if (currentMonth < 0) { currentMonth = 11; currentYear--; }
       if (currentMonth > 11) { currentMonth = 0; currentYear++; }
       renderCalendar(currentMonth, currentYear);
     }
-
     renderCalendar(currentMonth, currentYear);
 
-    // Add Logo Dynamically
+    // dynamic logo
     const logoContainer = document.getElementById('logo');
     const logo = document.createElement('img');
-    logo.src = 'logo.png';  
+    logo.src = 'logo.png';
     logo.alt = 'Bench Logo';
     logo.style.height = '50px';
     logo.style.marginLeft = '20px';
