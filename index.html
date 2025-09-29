@@ -33,12 +33,19 @@
       flex-wrap: wrap;
     }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
+      /* Button Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ✅ Always 3 per row */
+  gap: 15px;
+  justify-items: center; /* Center the boxes */
+  margin-bottom: 30px;
+}
+
+.box {
+  width: 100%;
+  max-width: 150px; /* ✅ keeps boxes readable on phone */
+  }
 
     /* Digital clock */
     #digitalClock {
