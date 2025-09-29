@@ -1,1 +1,8 @@
+/* Analog Clock Styling */
+#clockCanvas {
+  background: #fff;
+  border: 10px solid #c0392b; /* red outer border */
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
 
