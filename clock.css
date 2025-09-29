@@ -5,40 +5,7 @@
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-}
 
-.button-grid button {
-  padding: 10px;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: white;
-  font-size: 0.9em;
-  cursor: pointer;
-}
 
-.button-grid button:hover {
-  background: #eee;
-}
-
-#others {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: #fff;
-  cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  .button-grid {
-    grid-template-columns: repeat(3, 1fr); /* exactly 3 per row on phone */
-  }
-}
 
 
